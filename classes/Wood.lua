@@ -10,8 +10,8 @@ function Wood(x, y, w, h, speed, direction) -- direction -1 == left, 1 = right
 
         move = function(self)
             self.x = self.x + direction * speed
-            if self.x < - 48 then self.x = 256 end -- 256 = VIRTUAL_WIDTH + 32
-            if self.x >  256 then self.x = -32 end
+            if self.x < - 48 then self.x = 272 end -- 256 = VIRTUAL_WIDTH + 48
+            if self.x >  272 then self.x = -48 end
         end,
 
         render = function(self)
