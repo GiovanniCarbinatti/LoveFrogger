@@ -2,6 +2,7 @@ local Car = require("classes/Car")
 local River = require("classes/River")
 local Wood = require("classes/Wood")
 local Turtle = require("classes/Turtle")
+local Finishline = require("classes/Finishline")
 
 instanciate = {}
 
@@ -34,6 +35,16 @@ function instanciate.turtle()
                Turtle(VIRTUAL_WIDTH - 32,  80, 48, 16, 1, -1)}
 
     return turtles
+end
+
+function instanciate.finishline()
+    finishlines = {Finishline(24,  32, 16, 16),
+                   Finishline(64,  32, 16, 16),
+                   Finishline(104,  32, 16, 16),
+                   Finishline(144, 32, 16, 16),
+                   Finishline(184, 32, 16, 16)}
+
+    return finishlines
 end
 
 return instanciate

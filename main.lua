@@ -10,6 +10,7 @@ local Car = require("classes/Car")
 local River = require("classes/River")
 local Wood = require("classes/Wood")
 local Turtle = require("classes/Turtle")
+local Finishline = require("classes/Finishline")
 local instanciate = require("instanciate")
 
 local gameover = love.audio.newSource("assets/gameover.wav", "static")
@@ -35,6 +36,7 @@ function love.load()
     rivers = instanciate:river()
     woods = instanciate:wood()
     turtles = instanciate:turtle()
+    finishlines = instanciate:finishline()
 end
 
 function love.update(dt)
@@ -71,13 +73,24 @@ function love.update(dt)
             if turtles[i].is_colliding then turtle_colliding = true break end
         end
         for _, river in pairs(rivers) do
-            colliding = utils.is_colliding(player.x, player.y + 1, river.x, river.y, river.w, river.h)
+            local colliding = utils.is_colliding(player.x, player.y + 1, river.x, river.y, river.w, river.h)
             if colliding and not wood_colliding and not turtle_colliding then 
                 player = Player() state.lifes = state.lifes - 1 gameover:play() 
             end
         end
 
-        if state.lifes < 0 then state.play = false state.menu = true state.lifes = 2 state.score = 0 end
+        for _, finishline in pairs(finishlines) do
+            local colliding = utils.is_colliding(player.x + player.w / 2, player.y + 1, finishline.x, finishline.y, finishline.w, finishline.h)
+            if colliding and not finishline.finished then
+                finishline.finished = true state.score = state.score + 100 
+                player.x = VIRTUAL_WIDTH / 2 player.y = VIRTUAL_HEIGHT - 32
+            end
+        end
+
+        if state.lifes < 0 then 
+            state.play = false state.menu = true state.lifes = 2 state.score = 0 
+            for _, finishline in pairs(finishlines) do finishline.finished = false end
+        end
     end
     
     utils.check_quit()
@@ -95,6 +108,7 @@ function love.draw()
         for _, river in pairs(rivers) do river:render() end
         for _, wood in pairs(woods) do wood:render() end
         for _, turtle in pairs(turtles) do turtle:render() end
+        for _, finishline in pairs(finishlines) do finishline:render() end
         player:render()
         
         love.graphics.setColor(1,1,1)
