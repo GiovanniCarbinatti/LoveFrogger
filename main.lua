@@ -109,6 +109,7 @@ function love.draw()
         for _, wood in pairs(woods) do wood:render() end
         for _, turtle in pairs(turtles) do turtle:render() end
         for _, finishline in pairs(finishlines) do finishline:render() end
+        UI:safezone()
         player:render()
         
         love.graphics.setColor(1,1,1)

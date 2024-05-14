@@ -16,7 +16,9 @@ function UI.render()
     for i = 1, state.lifes do
         love.graphics.rectangle("fill", (i - 1) * 8 + 4, VIRTUAL_HEIGHT - 10, 4, 4)
     end
+end
 
+function UI.safezone()
     love.graphics.setColor(0,1,1)
     love.graphics.rectangle("fill", 0, 128, VIRTUAL_WIDTH, 16)
 end
