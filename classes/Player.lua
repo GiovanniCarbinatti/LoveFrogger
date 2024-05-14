@@ -1,5 +1,6 @@
 local love = require("love")
 local jump = love.audio.newSource("assets/jump.mp3", "static")
+local frog_sprite = love.graphics.newImage('assets/frog.png')
 
 function Player() 
     return {
@@ -37,7 +38,7 @@ function Player()
 
     render = function(self)
         love.graphics.setColor(1,1,1)
-        love.graphics.rectangle("fill", self.x, self.y, self.w, self.h)
+        love.graphics.draw(frog_sprite, self.x, self.y)
     end
     }
 end
