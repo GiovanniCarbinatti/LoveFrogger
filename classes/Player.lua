@@ -15,12 +15,23 @@ function Player()
         function love.keypressed(key)
             if     key == "w" or key == "up"    and self.move_delay < 0 then 
                 self.y = self.y - 16 self.move_delay = 12 jump:play() state.score = state.score + 10
-            elseif key == "s" or key == "down"  and self.move_delay < 0 then 
-                self.y = self.y + 16 self.move_delay = 12 jump:play()
+            elseif key == "s" or key == "down"  and self.move_delay < 0 then
+                if self.y + self.h + 16 < VIRTUAL_HEIGHT then self.y = self.y + 16 self.move_delay = 12 jump:play() end
             elseif key == "a" or key == "left"  and self.move_delay < 0 then
-                self.x = self.x - 16 self.move_delay = 12 jump:play()
+                if self.x - 16 > 0 then 
+                    self.x = self.x - 16
+                else
+                    self.x = 0
+                end
+                self.move_delay = 12 jump:play()
             elseif key == "d" or key == "right" and self.move_delay < 0 then
-                self.x = self.x + 16 self.move_delay = 12 jump:play() end
+                if self.x + self.w + 16 < VIRTUAL_WIDTH then
+                    self.x = self.x + 16
+                else
+                    self.x = VIRTUAL_WIDTH - 16
+                end
+                self.move_delay = 12 jump:play()
+            end
         end
     end,
 
