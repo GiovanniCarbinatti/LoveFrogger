@@ -7,8 +7,10 @@ local Finishline = require("classes/Finishline")
 instanciate = {}
 
 function instanciate.car()
-    cars = {Car(VIRTUAL_WIDTH - 32, VIRTUAL_HEIGHT - 64, 16, 16, 1, -1),
-            Car(VIRTUAL_WIDTH + 16, VIRTUAL_HEIGHT - 64, 16, 16, 1, -1)}
+    cars = {Car(VIRTUAL_WIDTH - 32, VIRTUAL_HEIGHT - 64, 16, 16, 1, -1, 1),
+            Car(VIRTUAL_WIDTH + 16, VIRTUAL_HEIGHT - 64, 16, 16, 1, -1, 1),
+            Car(VIRTUAL_WIDTH - 32, VIRTUAL_HEIGHT - 112, 32, 16, 1, -1, 2),
+            Car(VIRTUAL_WIDTH + 16, VIRTUAL_HEIGHT - 112, 32, 16, 1, -1, 2)}
 
     return cars
 end

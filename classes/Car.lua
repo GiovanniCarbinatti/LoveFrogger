@@ -1,6 +1,10 @@
 local love = require("love")
+local carsprites = {
+    love.graphics.newImage("assets/car1.png"),
+    love.graphics.newImage("assets/car2.png")
+}
 
-function Car(x, y, w, h, speed, direction) -- direction -1 == left, 1 = right
+function Car(x, y, w, h, speed, direction, spr) -- direction -1 == left, 1 = right
     return {
         x = x,
         y = y,
@@ -8,6 +12,7 @@ function Car(x, y, w, h, speed, direction) -- direction -1 == left, 1 = right
         h = h,
         speed = speed,
         direction = direction,
+        spr = spr,
 
         move = function(self)
             self.x = self.x + direction * speed
@@ -15,8 +20,7 @@ function Car(x, y, w, h, speed, direction) -- direction -1 == left, 1 = right
         end,
 
         render = function(self)
-            love.graphics.setColor(0,1,0)
-            love.graphics.rectangle("fill", self.x, self.y, self.w, self.h)
+            love.graphics.draw(carsprites[self.spr], self.x, self.y)
         end
     }
 end
