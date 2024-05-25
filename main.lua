@@ -50,7 +50,7 @@ function love.update(dt)
         player:move()
 
         for _, car in pairs(cars) do
-            colliding = utils.is_colliding(car.x, car.y + 1, player.x, player.y, player.w, player.h)
+            colliding = utils.is_colliding(car.x + 2, car.y + 1, player.x, player.y, player.w, player.h) or utils.is_colliding(player.x + 2, player.y + 1, car.x, car.y, car.w, car.h)
             if colliding then player = Player() state.lifes = state.lifes - 1 gameover:play() end
             car:move()
         end
