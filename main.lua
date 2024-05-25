@@ -111,8 +111,6 @@ function love.draw()
         for _, finishline in pairs(finishlines) do finishline:render() end
         UI:safezone()
         player:render()
-        
-        love.graphics.setColor(1,1,1)
         UI:render()
     end
 
