@@ -2,7 +2,8 @@ local love = require("love")
 local carsprites = {
     love.graphics.newImage("assets/car1.png"),
     love.graphics.newImage("assets/car2.png"),
-    love.graphics.newImage("assets/car3.png")
+    love.graphics.newImage("assets/car3.png"),
+    love.graphics.newImage("assets/car4.png")
 }
 
 function Car(x, y, w, h, speed, direction, spr) -- direction -1 == left, 1 = right
