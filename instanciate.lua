@@ -26,12 +26,12 @@ function instanciate.river()
 end
 
 function instanciate.wood()
-    woods = {Wood(VIRTUAL_WIDTH - 32,  48, 32, 16, 1,  2),
-             Wood(VIRTUAL_WIDTH - 96,  48, 48, 16, 1,  2),
-             Wood(VIRTUAL_WIDTH - 32,  96, 32, 16, 1, -1),
-             Wood(VIRTUAL_WIDTH - 96,  96, 48, 16, 1, -1),
-             Wood(VIRTUAL_WIDTH - 32,  64, 32, 16, 1,  1),
-             Wood(VIRTUAL_WIDTH - 126, 64, 48, 16, 1,  1)}
+    woods = {Wood(VIRTUAL_WIDTH - 32,  48, 32, 16, 2, 1,  2),
+             Wood(VIRTUAL_WIDTH - 96,  48, 48, 16, 3, 1,  2),
+             Wood(VIRTUAL_WIDTH - 32,  96, 32, 16, 2, 1, -1),
+             Wood(VIRTUAL_WIDTH - 96,  96, 48, 16, 3, 1, -1),
+             Wood(VIRTUAL_WIDTH - 32,  64, 32, 16, 2, 1,  1),
+             Wood(VIRTUAL_WIDTH - 126, 64, 48, 16, 3, 1,  1)}
 
     return woods
 end

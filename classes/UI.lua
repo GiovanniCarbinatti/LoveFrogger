@@ -1,4 +1,5 @@
 local retro_font = love.graphics.newFont('assets/font.ttf', 16)
+local safesprite = love.graphics.newImage('assets/safezone.png')
 
 local UI = {}
 
@@ -19,8 +20,11 @@ function UI.render()
 end
 
 function UI.safezone()
-    love.graphics.setColor(0,1,1)
-    love.graphics.rectangle("fill", 0, 128, VIRTUAL_WIDTH, 16)
+    love.graphics.setColor(1,1,1)
+    for i = 0, VIRTUAL_WIDTH, 16 do
+        love.graphics.draw(safesprite, i, 128)
+        love.graphics.draw(safesprite, i, 224)
+    end
 end
 
 return UI

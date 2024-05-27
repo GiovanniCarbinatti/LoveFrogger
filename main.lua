@@ -100,9 +100,7 @@ function love.draw()
     if state.intro then intro:render() end
     push:apply('start')
 
-    if state.menu then
-        menu:render()
-    end
+    if state.menu then menu:render() end
     if state.play then
         for _, car in pairs(cars) do car:render() end
         for _, river in pairs(rivers) do river:render() end
