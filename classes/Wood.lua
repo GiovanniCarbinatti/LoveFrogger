@@ -30,16 +30,6 @@ function Wood(x, y, w, h, tiles, speed, direction) -- direction -1 == left, 1 = 
                 end
             end
             love.graphics.draw(woodsprites[3], self.x + self.w - 16, self.y)
-        end,
-
-        begin = function()
-            woods = {Wood(VIRTUAL_WIDTH - 32,  48, 32, 16, 1,  2),
-                     Wood(VIRTUAL_WIDTH - 96,  48, 48, 16, 1,  2),
-                     Wood(VIRTUAL_WIDTH - 32,  96, 32, 16, 1, -1),
-                     Wood(VIRTUAL_WIDTH - 96,  96, 48, 16, 1, -1),
-                     Wood(VIRTUAL_WIDTH - 32,  64, 32, 16, 1,  1),
-                     Wood(VIRTUAL_WIDTH - 126, 64, 48, 16, 1,  1)}
-            return woods
         end
     }
 end
