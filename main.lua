@@ -1,25 +1,25 @@
-local love = require("love")
-local push = require("libs/push")
-local Player = require("classes/Player")
-_G.state = require("gamestate")
-local utils = require("utils")
-local menu = require("classes/menu")
-local Intro = require("classes/Intro")
-local UI = require("classes/UI")
-local Car = require("classes/Car")
-local River = require("classes/River")
-local Wood = require("classes/Wood")
-local Turtle = require("classes/Turtle")
-local Finishline = require("classes/Finishline")
+local love        = require("love")
+local push        = require("libs/push")
+local Player      = require("classes/Player")
+_G.state          = require("gamestate")
+local utils       = require("utils")
+local menu        = require("classes/menu")
+local Intro       = require("classes/Intro")
+local UI          = require("classes/UI")
+local Car         = require("classes/Car")
+local River       = require("classes/River")
+local Wood        = require("classes/Wood")
+local Turtle      = require("classes/Turtle")
+local Finishline  = require("classes/Finishline")
 local instanciate = require("instanciate")
 
 local gameover = love.audio.newSource("assets/gameover.wav", "static")
 
-WINDOW_WIDTH = 224 * 3
-WINDOW_HEIGHT = 256 * 3
+WINDOW_WIDTH   = 672 -- 224 * 3 (3x scaling)
+WINDOW_HEIGHT  = 768 -- 256 * 3
 
-VIRTUAL_WIDTH = 224
-VIRTUAL_HEIGHT = 256 -- multiples of 16
+VIRTUAL_WIDTH  = 224
+VIRTUAL_HEIGHT = 256 -- multiples of 16 (16x16 tiles)
 
 function love.load()
     intro = Intro()
@@ -27,15 +27,15 @@ function love.load()
 
     push:setupScreen(VIRTUAL_WIDTH, VIRTUAL_HEIGHT, WINDOW_WIDTH, WINDOW_HEIGHT, {
         fullscreen = false,
-        resizable = false,
-        vsync = true
+        resizable  = false,
+        vsync      = true
     })
 
-    player = Player()
-    cars = instanciate:car()
-    rivers = instanciate:river()
-    woods = instanciate:wood()
-    turtles = instanciate:turtle()
+    player      = Player()
+    cars        = instanciate:car()
+    rivers      = instanciate:river()
+    woods       = instanciate:wood()
+    turtles     = instanciate:turtle()
     finishlines = instanciate:finishline()
 end
 
@@ -102,10 +102,10 @@ function love.draw()
 
     if state.menu then menu:render() end
     if state.play then
-        for _, car in pairs(cars) do car:render() end
-        for _, river in pairs(rivers) do river:render() end
-        for _, wood in pairs(woods) do wood:render() end
-        for _, turtle in pairs(turtles) do turtle:render() end
+        for _, car        in pairs(cars)        do car:render()        end
+        for _, river      in pairs(rivers)      do river:render()      end
+        for _, wood       in pairs(woods)       do wood:render()       end
+        for _, turtle     in pairs(turtles)     do turtle:render()     end
         for _, finishline in pairs(finishlines) do finishline:render() end
         UI:safezone()
         player:render()
