@@ -17,7 +17,7 @@ function Wood(x, y, w, h, tiles, speed, direction) -- direction -1 == left, 1 = 
 
         move = function(self)
             self.x = self.x + direction * speed
-            if self.x < - 48 then self.x = 272 end -- 256 = VIRTUAL_WIDTH + 48
+            if self.x <  -48 then self.x = 272 end -- 256 = VIRTUAL_WIDTH + 48
             if self.x >  272 then self.x = -48 end
         end,
 
