@@ -50,7 +50,7 @@ function love.update(dt)
         player:move()
 
         for _, car in pairs(cars) do
-            colliding = utils.is_colliding(car.x + 2, car.y + 1, player.x, player.y, player.w, player.h) or utils.is_colliding(player.x + 2, player.y + 1, car.x, car.y, car.w, car.h)
+            local colliding = utils.is_colliding(car.x + 2, car.y + 1, player.x, player.y, player.w, player.h) or utils.is_colliding(player.x + 2, player.y + 1, car.x, car.y, car.w, car.h)
             if colliding then player = Player() state.lifes = state.lifes - 1 gameover:play() end
             car:move()
         end
@@ -64,11 +64,11 @@ function love.update(dt)
             if turtle.is_colliding then player.x = player.x + turtle.direction * turtle.speed end
             turtle:move()
         end
-        wood_colliding = false
-        for i = 1, #woods do 
+        local wood_colliding = false
+        for i = 1, #woods do
             if woods[i].is_colliding then wood_colliding = true break end
         end
-        turtle_colliding = false
+        local turtle_colliding = false
         for i = 1, #turtles do 
             if turtles[i].is_colliding then turtle_colliding = true break end
         end
