@@ -14,6 +14,7 @@ local Finishline  = require("classes/Finishline")
 local instanciate = require("instanciate")
 
 local gameover = love.audio.newSource("assets/gameover.wav", "static")
+local success  = love.audio.newSource("assets/success.mp3" , "static")
 
 WINDOW_WIDTH   = 672 -- 224 * 3 (3x scaling)
 WINDOW_HEIGHT  = 768 -- 256 * 3
@@ -84,6 +85,7 @@ function love.update(dt)
             if colliding and not finishline.finished then
                 finishline.finished = true state.score = state.score + 100 
                 player.x = VIRTUAL_WIDTH / 2 player.y = VIRTUAL_HEIGHT - 32
+                success:play()
             end
         end
 
