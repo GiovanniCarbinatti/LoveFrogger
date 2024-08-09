@@ -7,7 +7,7 @@ local gamestate = {
     score    = 0,
     lifes    = 2,
     level    = 1,
-    finishes = 4
+    finishes = 0
 }
 
 return gamestate
