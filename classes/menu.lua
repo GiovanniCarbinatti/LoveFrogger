@@ -7,8 +7,20 @@ local menu = {}
 
 menu.buttons = {
     -- 224 = VIRTUAL_WIDTH, 256 = VIRTUAL_HEIGHT
+    mute = Button(224 - 32, 8, 24, 24, "MUTE", function() state.muted = not state.muted end, 1),
     play = Button(224 / 2 - 24, 256 / 2 - 16, 48, 32, "PLAY", function() state.menu = false state.play = true end)
 }
+
+-- overriding the onclick method only for the mute button,
+-- since it requires the togglesprite logic.
+menu.buttons.mute.onclick = function()
+    menu.buttons.mute.action()
+    if menu.buttons.mute.sprite == 1 then 
+        menu.buttons.mute.sprite = 2 
+    elseif menu.buttons.mute.sprite == 2 then 
+        menu.buttons.mute.sprite = 1 
+    end
+end
 
 function menu.render()
     for _, button in pairs(menu.buttons) do
@@ -29,7 +41,7 @@ function menu.click()
 end
 
 function menu.play_song()
-    if not song:isPlaying() then love.audio.play(song) end
+    if not song:isPlaying() and not state.muted then love.audio.play(song) end
 end
 
 function menu.stop_song()

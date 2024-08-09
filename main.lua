@@ -15,6 +15,7 @@ local instanciate = require("instanciate")
 
 local gameover = love.audio.newSource("assets/gameover.wav", "static")
 local success  = love.audio.newSource("assets/success.mp3" , "static")
+local levelup  = love.audio.newSource("assets/levelup.mp3", "static")
 
 WINDOW_WIDTH   = 672 -- 224 * 3 (3x scaling)
 WINDOW_HEIGHT  = 768 -- 256 * 3
@@ -43,8 +44,12 @@ end
 function love.update(dt)
     if state.intro then intro:update(dt) end
     if state.menu then
-        menu:play_song()
         menu:click()
+        if not state.muted then
+            menu:play_song()
+        else
+            menu:stop_song()
+        end
     end
     if state.play then
         menu:stop_song()
@@ -83,16 +88,14 @@ function love.update(dt)
         for _, finishline in pairs(finishlines) do
             local colliding = utils.is_colliding(player.x + player.w / 2, player.y + 1, finishline.x, finishline.y, finishline.w, finishline.h)
             if colliding and not finishline.finished then
-                finishline.finished = true state.score = state.score + 100 
+                success:play() state.score = state.score + 100 
                 player.x = VIRTUAL_WIDTH / 2 player.y = VIRTUAL_HEIGHT - 32
-                success:play()
+                finishline.finished = true state.finishes = state.finishes + 1
             end
         end
 
-        if state.lifes < 0 then 
-            state.play = false state.menu = true state.lifes = 2 state.score = 0 
-            for _, finishline in pairs(finishlines) do finishline.finished = false end
-        end
+        if state.finishes == 5 then utils.levelup(finishlines) levelup:play() end
+        if state.lifes < 0 then utils.die(finishlines) end
     end
     
     utils.check_quit()
