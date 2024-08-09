@@ -1,5 +1,6 @@
 local retro_font = love.graphics.newFont('assets/font.ttf', 16)
 local safesprite = love.graphics.newImage('assets/safezone.png')
+local lifesprite = love.graphics.newImage('assets/life.png')
 
 local UI = {}
 
@@ -15,7 +16,8 @@ function UI.render()
 
     love.graphics.setColor(0,0,1)
     for i = 1, state.lifes do
-        love.graphics.rectangle("fill", (i - 1) * 8 + 4, VIRTUAL_HEIGHT - 10, 4, 4)
+        love.graphics.setColor(1,1,1)
+        love.graphics.draw(lifesprite, (i - 1) * 12 + 4, VIRTUAL_HEIGHT - 12)
     end
 end
 
